@@ -24,7 +24,7 @@ export function Header() {
             alt="Logo de Puccake"
             width={44}
             height={44}
-            className="h-11 w-11 shrink-0 rounded-full object-cover"
+            className="h-11 w-11 shrink-0 rounded-full bg-cream-soft object-contain p-0.5"
           />
           <span className="truncate font-display text-xl font-bold text-brand-red">Puccake</span>
         </a>

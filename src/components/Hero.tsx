@@ -68,7 +68,7 @@ export function Hero() {
             aria-hidden="true"
             width={120}
             height={120}
-            className="floaty absolute -bottom-6 -left-2 h-24 w-24 rounded-full border-4 border-warm-white object-cover shadow-sweet sm:h-32 sm:w-32"
+            className="floaty absolute -bottom-6 -left-2 h-24 w-24 rounded-full border-4 border-warm-white bg-warm-white object-contain p-2 shadow-sweet sm:h-32 sm:w-32"
           />
           {floats.map((f) => (
             <span
