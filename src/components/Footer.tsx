@@ -14,7 +14,7 @@ export function Footer() {
               width={48}
               height={48}
               loading="lazy"
-              className="h-12 w-12 rounded-full object-cover"
+              className="h-12 w-12 rounded-full bg-warm-white object-contain p-1"
             />
             <span className="font-display text-xl font-bold text-brand-gold">Puccake</span>
           </div>

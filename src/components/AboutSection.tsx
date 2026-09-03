@@ -35,7 +35,7 @@ export function AboutSection() {
               aria-hidden="true"
               width={96}
               height={96}
-              className="floaty absolute -left-4 -top-6 h-20 w-20 rounded-full border-4 border-warm-white object-cover shadow-sweet"
+              className="floaty absolute -left-4 -top-6 h-20 w-20 rounded-full border-4 border-warm-white bg-warm-white object-contain p-2 shadow-sweet"
             />
           </div>
         </Reveal>
