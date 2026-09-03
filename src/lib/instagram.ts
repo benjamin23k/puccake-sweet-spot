@@ -11,7 +11,9 @@ export type OrderDetails = {
   notes?: string;
 };
 
-export function buildWhatsappUrl(items: CartItem[], total: number, details: OrderDetails = {}) {
+export const instagramDmUrl = `https://ig.me/m/${siteConfig.instagramUsername}`;
+
+function buildOrderMessage(items: CartItem[], total: number, details: OrderDetails = {}) {
   const lines = [
     "¡Hola Puccake! Quiero hacer un pedido 🍰",
     "",
@@ -27,5 +29,21 @@ export function buildWhatsappUrl(items: CartItem[], total: number, details: Orde
   if (details.address) lines.push(`Dirección: ${details.address}`);
   if (details.notes) lines.push(`Notas: ${details.notes}`);
 
-  return `https://wa.me/${siteConfig.whatsappNumber}?text=${encodeURIComponent(lines.join("\n"))}`;
+  return lines.join("\n");
+}
+
+/**
+ * Instagram DM links can't prefill message text, so we copy the order to the
+ * clipboard and open the chat — the caller is expected to toast a hint to paste it.
+ */
+export async function openInstagramOrder(items: CartItem[], total: number, details: OrderDetails = {}) {
+  const message = buildOrderMessage(items, total, details);
+
+  try {
+    await navigator.clipboard.writeText(message);
+  } catch {
+    // Clipboard permission denied or unavailable — the DM chat still opens below.
+  }
+
+  window.open(instagramDmUrl, "_blank", "noopener,noreferrer");
 }

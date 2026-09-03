@@ -1,7 +1,8 @@
 import { Minus, Plus, ShoppingBag, Trash2, X } from "lucide-react";
+import { toast } from "sonner";
 import { useCart } from "@/context/cart";
 import { currency } from "@/data/products";
-import { buildWhatsappUrl } from "@/lib/whatsapp";
+import { openInstagramOrder } from "@/lib/instagram";
 
 export function CartDrawer({ onCheckout }: { onCheckout: () => void }) {
   const { items, isOpen, setOpen, remove, setQuantity, clear, subtotal } = useCart();
@@ -100,14 +101,16 @@ export function CartDrawer({ onCheckout }: { onCheckout: () => void }) {
             >
               Continuar al pedido
             </button>
-            <a
-              href={buildWhatsappUrl(items, subtotal)}
-              target="_blank"
-              rel="noreferrer"
+            <button
+              type="button"
+              onClick={() => {
+                openInstagramOrder(items, subtotal);
+                toast("Copiamos tu pedido. Pégalo en el chat de Instagram para enviarlo.");
+              }}
               className="block w-full rounded-full border-2 border-brand-red/25 bg-warm-white px-6 py-3 text-center text-sm font-bold text-brand-red hover:border-brand-red"
             >
-              Ordenar por WhatsApp
-            </a>
+              Ordenar por Instagram
+            </button>
             <div className="flex justify-between text-xs font-semibold">
               <button onClick={() => setOpen(false)} className="text-cocoa hover:text-brand-red">
                 Seguir comprando

@@ -1,6 +1,6 @@
 import miniCake from "@/assets/mini-cake.jpg";
 import strawberryCup from "@/assets/strawberry-cup.jpg";
-import logo from "@/assets/puccake-logo.png.asset.json";
+import logo from "@/assets/puccake-logo.png";
 import { Reveal } from "@/components/Reveal";
 
 export function AboutSection() {
@@ -30,7 +30,7 @@ export function AboutSection() {
               />
             </div>
             <img
-              src={logo.url}
+              src={logo}
               alt=""
               aria-hidden="true"
               width={96}

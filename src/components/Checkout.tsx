@@ -1,8 +1,9 @@
 import { useState } from "react";
 import { Check, X } from "lucide-react";
+import { toast } from "sonner";
 import { useCart } from "@/context/cart";
 import { currency } from "@/data/products";
-import { buildWhatsappUrl } from "@/lib/whatsapp";
+import { openInstagramOrder } from "@/lib/instagram";
 
 const field =
   "w-full rounded-2xl border border-border bg-card px-4 py-3 text-sm text-charcoal outline-none transition-colors focus:border-brand-orange";
@@ -143,14 +144,17 @@ export function Checkout({ open, onClose }: { open: boolean; onClose: () => void
               >
                 Confirmar pedido
               </button>
-              <a
-                href={buildWhatsappUrl(items, subtotal, form)}
-                target="_blank"
-                rel="noreferrer"
-                className="mt-2 block w-full rounded-full border-2 border-brand-red/25 bg-warm-white px-6 py-3 text-center text-sm font-bold text-brand-red hover:border-brand-red"
+              <button
+                type="button"
+                disabled={items.length === 0}
+                onClick={() => {
+                  openInstagramOrder(items, subtotal, form);
+                  toast("Copiamos tu pedido. Pégalo en el chat de Instagram para enviarlo.");
+                }}
+                className="mt-2 block w-full rounded-full border-2 border-brand-red/25 bg-warm-white px-6 py-3 text-center text-sm font-bold text-brand-red hover:border-brand-red disabled:opacity-50"
               >
-                Ordenar por WhatsApp
-              </a>
+                Ordenar por Instagram
+              </button>
             </aside>
           </form>
         )}

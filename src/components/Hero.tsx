@@ -1,5 +1,5 @@
 import heroImg from "@/assets/hero-desserts.jpg";
-import logo from "@/assets/puccake-logo.png.asset.json";
+import logo from "@/assets/puccake-logo.png";
 
 const floats = [
   { emoji: "🍓", className: "left-2 top-10 text-3xl", delay: "0s" },
@@ -63,7 +63,7 @@ export function Hero() {
             />
           </div>
           <img
-            src={logo.url}
+            src={logo}
             alt=""
             aria-hidden="true"
             width={120}

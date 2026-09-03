@@ -1,6 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useState } from "react";
-import { MessageCircle } from "lucide-react";
+import { Instagram } from "lucide-react";
+import { toast } from "sonner";
 import { CartProvider, useCart } from "@/context/cart";
 import { Header } from "@/components/Header";
 import { Hero } from "@/components/Hero";
@@ -12,11 +13,12 @@ import { AboutSection } from "@/components/AboutSection";
 import { Footer } from "@/components/Footer";
 import { CartDrawer } from "@/components/CartDrawer";
 import { Checkout } from "@/components/Checkout";
-import { buildWhatsappUrl } from "@/lib/whatsapp";
+import { Toaster } from "@/components/ui/sonner";
+import { openInstagramOrder } from "@/lib/instagram";
 
 const title = "Puccake — Repostería boutique, postres y dulces";
 const description =
-  "Pasteles, cupcakes, donas, postres y dulces artesanales de Puccake. Pequeños antojos, grandes momentos. Ordena en línea o por WhatsApp.";
+  "Pasteles, cupcakes, donas, postres y dulces artesanales de Puccake. Pequeños antojos, grandes momentos. Ordena en línea o por Instagram.";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -32,19 +34,21 @@ export const Route = createFileRoute("/")({
   component: Index,
 });
 
-function WhatsappFab() {
+function InstagramFab() {
   const { items, subtotal } = useCart();
   return (
-    <a
-      href={buildWhatsappUrl(items, subtotal)}
-      target="_blank"
-      rel="noreferrer"
-      aria-label="Ordenar por WhatsApp"
+    <button
+      type="button"
+      onClick={() => {
+        openInstagramOrder(items, subtotal);
+        toast("Copiamos tu pedido. Pégalo en el chat de Instagram para enviarlo.");
+      }}
+      aria-label="Ordenar por Instagram"
       className="fixed bottom-5 right-5 z-30 inline-flex items-center gap-2 rounded-full bg-brand-red px-5 py-3.5 text-sm font-bold text-primary-foreground shadow-sweet-lg transition-transform hover:-translate-y-0.5"
     >
-      <MessageCircle className="h-5 w-5" />
-      <span className="hidden sm:inline">Ordenar por WhatsApp</span>
-    </a>
+      <Instagram className="h-5 w-5" />
+      <span className="hidden sm:inline">Ordenar por Instagram</span>
+    </button>
   );
 }
 
@@ -65,7 +69,8 @@ function Index() {
       <Footer />
       <CartDrawer onCheckout={() => setCheckoutOpen(true)} />
       <Checkout open={checkoutOpen} onClose={() => setCheckoutOpen(false)} />
-      <WhatsappFab />
+      <InstagramFab />
+      <Toaster />
     </CartProvider>
   );
 }

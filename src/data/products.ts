@@ -79,7 +79,15 @@ export const products: Product[] = [
     image: cupcake,
     category: "cupcakes",
   },
+  {
+    id: "carlota-chinola",
+    name: "Carlota de Chinola",
+    description: "Postre frío en capas con crema y chinola (maracuyá).",
+    price: 170,
+    image: miniCake,
+    category: "postres",
+  },
 ];
 
 export const currency = (value: number) =>
-  new Intl.NumberFormat("es-BO", { style: "currency", currency: "BOB", maximumFractionDigits: 0 }).format(value);
+  new Intl.NumberFormat("es-DO", { style: "currency", currency: "DOP", maximumFractionDigits: 0 }).format(value);

@@ -1,5 +1,5 @@
-import { Clock, Instagram, MapPin, MessageCircle } from "lucide-react";
-import logo from "@/assets/puccake-logo.png.asset.json";
+import { Clock, Instagram, MapPin } from "lucide-react";
+import logo from "@/assets/puccake-logo.png";
 import { siteConfig } from "@/lib/site-config";
 
 export function Footer() {
@@ -9,7 +9,7 @@ export function Footer() {
         <div>
           <div className="flex items-center gap-3">
             <img
-              src={logo.url}
+              src={logo}
               alt="Logo de Puccake"
               width={48}
               height={48}
@@ -62,13 +62,6 @@ export function Footer() {
               className="grid h-10 w-10 place-items-center rounded-full bg-cream-soft/10 transition-colors hover:bg-brand-red"
             >
               <Instagram className="h-5 w-5" />
-            </a>
-            <a
-              href={`https://wa.me/${siteConfig.whatsappNumber}`}
-              aria-label="WhatsApp de Puccake"
-              className="grid h-10 w-10 place-items-center rounded-full bg-cream-soft/10 transition-colors hover:bg-brand-red"
-            >
-              <MessageCircle className="h-5 w-5" />
             </a>
           </div>
         </div>

@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Menu, Search, ShoppingBag, X } from "lucide-react";
-import logo from "@/assets/puccake-logo.png.asset.json";
+import logo from "@/assets/puccake-logo.png";
 import { useCart } from "@/context/cart";
 
 const links = [
@@ -20,7 +20,7 @@ export function Header() {
       <div className="mx-auto grid max-w-7xl grid-cols-[minmax(0,1fr)_auto] items-center gap-4 px-4 py-3 sm:px-6 lg:grid-cols-[auto_1fr_auto]">
         <a href="#inicio" className="flex min-w-0 items-center gap-2">
           <img
-            src={logo.url}
+            src={logo}
             alt="Logo de Puccake"
             width={44}
             height={44}
