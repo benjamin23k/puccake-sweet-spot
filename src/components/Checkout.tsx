@@ -27,6 +27,8 @@ export function Checkout({ open, onClose }: { open: boolean; onClose: () => void
 
   const submit = (e: React.FormEvent) => {
     e.preventDefault();
+    openInstagramOrder(items, subtotal, form);
+    toast("Copiamos tu pedido. Pégalo en el chat de Instagram para enviarlo.");
     setConfirmed(true);
     clear();
   };
@@ -53,7 +55,9 @@ export function Checkout({ open, onClose }: { open: boolean; onClose: () => void
               <Check className="h-7 w-7" />
             </span>
             <h2 className="mt-4 font-display text-2xl font-extrabold text-charcoal">¡Pedido confirmado!</h2>
-            <p className="mt-2 text-cocoa">Te contactaremos muy pronto para coordinar tu entrega.</p>
+            <p className="mt-2 text-cocoa">
+              Abrimos el chat de Instagram y copiamos tu pedido — solo pégalo y envíalo para que lo recibamos.
+            </p>
             <button
               onClick={() => {
                 setConfirmed(false);
@@ -142,19 +146,11 @@ export function Checkout({ open, onClose }: { open: boolean; onClose: () => void
                 disabled={items.length === 0}
                 className="mt-4 w-full rounded-full bg-gradient-warm px-6 py-3.5 font-bold text-primary-foreground shadow-sweet disabled:opacity-50"
               >
-                Confirmar pedido
+                Confirmar y enviar por Instagram
               </button>
-              <button
-                type="button"
-                disabled={items.length === 0}
-                onClick={() => {
-                  openInstagramOrder(items, subtotal, form);
-                  toast("Copiamos tu pedido. Pégalo en el chat de Instagram para enviarlo.");
-                }}
-                className="mt-2 block w-full rounded-full border-2 border-brand-red/25 bg-warm-white px-6 py-3 text-center text-sm font-bold text-brand-red hover:border-brand-red disabled:opacity-50"
-              >
-                Ordenar por Instagram
-              </button>
+              <p className="mt-2 text-center text-xs text-cocoa/70">
+                Copiaremos tu pedido y abriremos el chat de Instagram para que lo envíes.
+              </p>
             </aside>
           </form>
         )}
