@@ -1,9 +1,10 @@
 import { useState } from "react";
-import { Check, X } from "lucide-react";
+import { Check, MessageCircle, X } from "lucide-react";
 import { toast } from "sonner";
 import { useCart } from "@/context/cart";
 import { currency } from "@/data/products";
 import { openInstagramOrder } from "@/lib/instagram";
+import { openWhatsappOrder } from "@/lib/whatsapp";
 
 const field =
   "w-full rounded-2xl border border-border bg-card px-4 py-3 text-sm text-charcoal outline-none transition-colors focus:border-brand-orange";
@@ -25,12 +26,22 @@ export function Checkout({ open, onClose }: { open: boolean; onClose: () => void
   const set = (key: keyof typeof form) => (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) =>
     setForm((f) => ({ ...f, [key]: e.target.value }));
 
-  const submit = (e: React.FormEvent) => {
-    e.preventDefault();
-    openInstagramOrder(items, subtotal, form);
-    toast("Copiamos tu pedido. Pégalo en el chat de Instagram para enviarlo.");
+  const finish = () => {
     setConfirmed(true);
     clear();
+  };
+
+  const submit = (e: React.FormEvent) => {
+    e.preventDefault();
+    openWhatsappOrder(items, subtotal, form);
+    finish();
+  };
+
+  const sendInstagram = () => {
+    if (items.length === 0) return;
+    openInstagramOrder(items, subtotal, form);
+    toast("Copiamos tu pedido. Pégalo en el chat de Instagram para enviarlo.");
+    finish();
   };
 
   return (
@@ -56,7 +67,7 @@ export function Checkout({ open, onClose }: { open: boolean; onClose: () => void
             </span>
             <h2 className="mt-4 font-display text-2xl font-extrabold text-charcoal">¡Pedido confirmado!</h2>
             <p className="mt-2 text-cocoa">
-              Abrimos el chat de Instagram y copiamos tu pedido — solo pégalo y envíalo para que lo recibamos.
+              Abrimos el chat con tu pedido — solo envíalo para que lo recibamos.
             </p>
             <button
               onClick={() => {
@@ -144,12 +155,21 @@ export function Checkout({ open, onClose }: { open: boolean; onClose: () => void
               <button
                 type="submit"
                 disabled={items.length === 0}
-                className="mt-4 w-full rounded-full bg-gradient-warm px-6 py-3.5 font-bold text-primary-foreground shadow-sweet disabled:opacity-50"
+                className="mt-4 flex w-full items-center justify-center gap-2 rounded-full bg-[#25D366] px-6 py-3.5 font-bold text-white shadow-sweet disabled:opacity-50"
               >
-                Confirmar y enviar por Instagram
+                <MessageCircle className="h-5 w-5" />
+                Enviar pedido por WhatsApp
+              </button>
+              <button
+                type="button"
+                onClick={sendInstagram}
+                disabled={items.length === 0}
+                className="mt-2 w-full rounded-full bg-gradient-warm px-6 py-3.5 font-bold text-primary-foreground shadow-sweet disabled:opacity-50"
+              >
+                Enviar pedido por Instagram
               </button>
               <p className="mt-2 text-center text-xs text-cocoa/70">
-                Copiaremos tu pedido y abriremos el chat de Instagram para que lo envíes.
+                Por WhatsApp el mensaje va escrito; por Instagram copiamos tu pedido para que lo pegues.
               </p>
             </aside>
           </form>

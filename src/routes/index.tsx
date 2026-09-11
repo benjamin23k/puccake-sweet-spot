@@ -1,6 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useState } from "react";
-import { Instagram } from "lucide-react";
+import { Instagram, MessageCircle } from "lucide-react";
 import { toast } from "sonner";
 import { CartProvider, useCart } from "@/context/cart";
 import { Header } from "@/components/Header";
@@ -15,6 +15,7 @@ import { CartDrawer } from "@/components/CartDrawer";
 import { Checkout } from "@/components/Checkout";
 import { Toaster } from "@/components/ui/sonner";
 import { openInstagramOrder } from "@/lib/instagram";
+import { openWhatsappOrder } from "@/lib/whatsapp";
 
 const title = "Puccake — Repostería boutique, postres y dulces";
 const description =
@@ -34,21 +35,32 @@ export const Route = createFileRoute("/")({
   component: Index,
 });
 
-function InstagramFab() {
+function OrderFabs() {
   const { items, subtotal } = useCart();
   return (
-    <button
-      type="button"
-      onClick={() => {
-        openInstagramOrder(items, subtotal);
-        toast("Copiamos tu pedido. Pégalo en el chat de Instagram para enviarlo.");
-      }}
-      aria-label="Ordenar por Instagram"
-      className="fixed bottom-5 right-5 z-30 inline-flex items-center gap-2 rounded-full bg-brand-red px-5 py-3.5 text-sm font-bold text-primary-foreground shadow-sweet-lg transition-transform hover:-translate-y-0.5"
-    >
-      <Instagram className="h-5 w-5" />
-      <span className="hidden sm:inline">Ordenar por Instagram</span>
-    </button>
+    <div className="fixed bottom-5 right-5 z-30 flex flex-col items-end gap-2">
+      <button
+        type="button"
+        onClick={() => openWhatsappOrder(items, subtotal)}
+        aria-label="Ordenar por WhatsApp"
+        className="inline-flex items-center gap-2 rounded-full bg-[#25D366] px-5 py-3.5 text-sm font-bold text-white shadow-sweet-lg transition-transform hover:-translate-y-0.5"
+      >
+        <MessageCircle className="h-5 w-5" />
+        <span className="hidden sm:inline">Ordenar por WhatsApp</span>
+      </button>
+      <button
+        type="button"
+        onClick={() => {
+          openInstagramOrder(items, subtotal);
+          toast("Copiamos tu pedido. Pégalo en el chat de Instagram para enviarlo.");
+        }}
+        aria-label="Ordenar por Instagram"
+        className="inline-flex items-center gap-2 rounded-full bg-brand-red px-5 py-3.5 text-sm font-bold text-primary-foreground shadow-sweet-lg transition-transform hover:-translate-y-0.5"
+      >
+        <Instagram className="h-5 w-5" />
+        <span className="hidden sm:inline">Ordenar por Instagram</span>
+      </button>
+    </div>
   );
 }
 
@@ -69,7 +81,7 @@ function Index() {
       <Footer />
       <CartDrawer onCheckout={() => setCheckoutOpen(true)} />
       <Checkout open={checkoutOpen} onClose={() => setCheckoutOpen(false)} />
-      <InstagramFab />
+      <OrderFabs />
       <Toaster />
     </CartProvider>
   );

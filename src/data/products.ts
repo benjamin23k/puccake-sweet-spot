@@ -5,6 +5,10 @@ import miniCake from "@/assets/mini-cake.jpg";
 import sweetBox from "@/assets/sweet-box.jpg";
 import cupcake from "@/assets/cupcake.jpg";
 import chocolates from "@/assets/chocolates.jpg";
+import carlotaChinola from "@/assets/carlota-chinola.jpg";
+import miniDonas from "@/assets/mini-donas.jpg";
+import tresLeches from "@/assets/tres-leches.jpg";
+import fresasChocolate from "@/assets/fresas-chocolate.jpg";
 
 export type Product = {
   id: string;
@@ -84,8 +88,35 @@ export const products: Product[] = [
     name: "Carlota de Chinola",
     description: "Postre frío en capas con crema y chinola (maracuyá).",
     price: 170,
-    image: miniCake,
+    image: carlotaChinola,
     category: "postres",
+    tag: "Favorito",
+  },
+  {
+    id: "mini-donas",
+    name: "Mini Donas",
+    description: "Docena de mini donas glaseadas con chispas de colores.",
+    price: 250,
+    image: miniDonas,
+    category: "donas",
+    tag: "Nuevo",
+  },
+  {
+    id: "tres-leches",
+    name: "Tres Leches",
+    description: "Bizcocho húmedo de tres leches con crema y canela.",
+    price: 200,
+    image: tresLeches,
+    category: "pasteles",
+  },
+  {
+    id: "fresas-chocolate",
+    name: "Fresas con Chocolate",
+    description: "Caja de fresas bañadas en chocolate con hilos de blanco.",
+    price: 450,
+    image: fresasChocolate,
+    category: "chocolates",
+    tag: "Para regalar",
   },
 ];
 
