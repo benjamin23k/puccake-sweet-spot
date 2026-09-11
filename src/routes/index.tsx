@@ -81,7 +81,7 @@ function Index() {
       <Footer />
       <CartDrawer onCheckout={() => setCheckoutOpen(true)} />
       <Checkout open={checkoutOpen} onClose={() => setCheckoutOpen(false)} />
-      <InstagramFab />
+      <OrderFabs />
       <Toaster />
     </CartProvider>
   );
