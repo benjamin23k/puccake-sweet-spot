@@ -13,7 +13,7 @@ export type OrderDetails = {
 
 export const instagramDmUrl = `https://ig.me/m/${siteConfig.instagramUsername}`;
 
-function buildOrderMessage(items: CartItem[], total: number, details: OrderDetails = {}) {
+export function buildOrderMessage(items: CartItem[], total: number, details: OrderDetails = {}) {
   const lines = [
     "¡Hola Puccake! Quiero hacer un pedido 🍰",
     "",
