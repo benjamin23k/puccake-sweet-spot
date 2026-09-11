@@ -1,6 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useState } from "react";
-import { Instagram } from "lucide-react";
+import { Instagram, MessageCircle } from "lucide-react";
 import { toast } from "sonner";
 import { CartProvider, useCart } from "@/context/cart";
 import { Header } from "@/components/Header";
@@ -15,6 +15,7 @@ import { CartDrawer } from "@/components/CartDrawer";
 import { Checkout } from "@/components/Checkout";
 import { Toaster } from "@/components/ui/sonner";
 import { openInstagramOrder } from "@/lib/instagram";
+import { openWhatsappOrder } from "@/lib/whatsapp";
 
 const title = "Puccake — Repostería boutique, postres y dulces";
 const description =

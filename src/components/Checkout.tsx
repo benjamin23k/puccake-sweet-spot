@@ -67,7 +67,7 @@ export function Checkout({ open, onClose }: { open: boolean; onClose: () => void
             </span>
             <h2 className="mt-4 font-display text-2xl font-extrabold text-charcoal">¡Pedido confirmado!</h2>
             <p className="mt-2 text-cocoa">
-              Abrimos el chat de Instagram y copiamos tu pedido — solo pégalo y envíalo para que lo recibamos.
+              Abrimos el chat con tu pedido — solo envíalo para que lo recibamos.
             </p>
             <button
               onClick={() => {
