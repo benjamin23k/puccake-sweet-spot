@@ -155,12 +155,21 @@ export function Checkout({ open, onClose }: { open: boolean; onClose: () => void
               <button
                 type="submit"
                 disabled={items.length === 0}
-                className="mt-4 w-full rounded-full bg-gradient-warm px-6 py-3.5 font-bold text-primary-foreground shadow-sweet disabled:opacity-50"
+                className="mt-4 flex w-full items-center justify-center gap-2 rounded-full bg-[#25D366] px-6 py-3.5 font-bold text-white shadow-sweet disabled:opacity-50"
               >
-                Confirmar y enviar por Instagram
+                <MessageCircle className="h-5 w-5" />
+                Enviar pedido por WhatsApp
+              </button>
+              <button
+                type="button"
+                onClick={sendInstagram}
+                disabled={items.length === 0}
+                className="mt-2 w-full rounded-full bg-gradient-warm px-6 py-3.5 font-bold text-primary-foreground shadow-sweet disabled:opacity-50"
+              >
+                Enviar pedido por Instagram
               </button>
               <p className="mt-2 text-center text-xs text-cocoa/70">
-                Copiaremos tu pedido y abriremos el chat de Instagram para que lo envíes.
+                Por WhatsApp el mensaje va escrito; por Instagram copiamos tu pedido para que lo pegues.
               </p>
             </aside>
           </form>
