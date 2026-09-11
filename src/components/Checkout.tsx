@@ -26,12 +26,22 @@ export function Checkout({ open, onClose }: { open: boolean; onClose: () => void
   const set = (key: keyof typeof form) => (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) =>
     setForm((f) => ({ ...f, [key]: e.target.value }));
 
-  const submit = (e: React.FormEvent) => {
-    e.preventDefault();
-    openInstagramOrder(items, subtotal, form);
-    toast("Copiamos tu pedido. Pégalo en el chat de Instagram para enviarlo.");
+  const finish = () => {
     setConfirmed(true);
     clear();
+  };
+
+  const submit = (e: React.FormEvent) => {
+    e.preventDefault();
+    openWhatsappOrder(items, subtotal, form);
+    finish();
+  };
+
+  const sendInstagram = () => {
+    if (items.length === 0) return;
+    openInstagramOrder(items, subtotal, form);
+    toast("Copiamos tu pedido. Pégalo en el chat de Instagram para enviarlo.");
+    finish();
   };
 
   return (
