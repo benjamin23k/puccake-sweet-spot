@@ -1,8 +1,9 @@
-import { Minus, Plus, ShoppingBag, Trash2, X } from "lucide-react";
+import { Minus, MessageCircle, Plus, ShoppingBag, Trash2, X } from "lucide-react";
 import { toast } from "sonner";
 import { useCart } from "@/context/cart";
 import { currency } from "@/data/products";
 import { openInstagramOrder } from "@/lib/instagram";
+import { openWhatsappOrder } from "@/lib/whatsapp";
 
 export function CartDrawer({ onCheckout }: { onCheckout: () => void }) {
   const { items, isOpen, setOpen, remove, setQuantity, clear, subtotal } = useCart();
@@ -100,6 +101,14 @@ export function CartDrawer({ onCheckout }: { onCheckout: () => void }) {
               className="w-full rounded-full bg-gradient-warm px-6 py-3.5 text-base font-bold text-primary-foreground shadow-sweet"
             >
               Continuar al pedido
+            </button>
+            <button
+              type="button"
+              onClick={() => openWhatsappOrder(items, subtotal)}
+              className="flex w-full items-center justify-center gap-2 rounded-full bg-[#25D366] px-6 py-3 text-center text-sm font-bold text-white"
+            >
+              <MessageCircle className="h-4 w-4" />
+              Ordenar por WhatsApp
             </button>
             <button
               type="button"

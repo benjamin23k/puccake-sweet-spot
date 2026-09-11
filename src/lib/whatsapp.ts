@@ -1,8 +1,6 @@
 import type { CartItem } from "@/context/cart";
-import { currency } from "@/data/products";
 import { siteConfig } from "@/lib/site-config";
-import type { OrderDetails } from "@/lib/instagram";
-import { buildOrderMessage } from "@/lib/instagram";
+import { buildOrderMessage, type OrderDetails } from "@/lib/instagram";
 
 /** Abre WhatsApp con el pedido ya escrito en el mensaje. */
 export function openWhatsappOrder(items: CartItem[], total: number, details: OrderDetails = {}) {
@@ -10,5 +8,3 @@ export function openWhatsappOrder(items: CartItem[], total: number, details: Ord
   const phone = siteConfig.whatsapp.replace(/\D/g, "");
   window.open(`https://wa.me/${phone}?text=${encodeURIComponent(message)}`, "_blank", "noopener,noreferrer");
 }
-
-export { currency };

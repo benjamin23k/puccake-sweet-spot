@@ -1,9 +1,10 @@
 import { useState } from "react";
-import { Check, X } from "lucide-react";
+import { Check, MessageCircle, X } from "lucide-react";
 import { toast } from "sonner";
 import { useCart } from "@/context/cart";
 import { currency } from "@/data/products";
 import { openInstagramOrder } from "@/lib/instagram";
+import { openWhatsappOrder } from "@/lib/whatsapp";
 
 const field =
   "w-full rounded-2xl border border-border bg-card px-4 py-3 text-sm text-charcoal outline-none transition-colors focus:border-brand-orange";
